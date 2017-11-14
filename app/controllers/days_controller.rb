@@ -15,6 +15,29 @@ class DaysController < ApplicationController
     end
   end
 
+  def edit
+    @week = Week.find(params[:week_id])
+    @day = Day.find(params[:id])
+    render :edit
+  end
+
+  def update
+    @day = Day.find(params[:id])
+    @week = @day.week
+    if @day.update(day_params)
+      redirect_to week_path(@week)
+    else
+      render 'days/edit'
+    end
+  end
+
+  def destroy
+    @week = Week.find(params[:week_id])
+    @day = Day.find(params[:id])
+    @day.destroy
+    redirect_to week_path(@week)
+  end
+
   private
   def day_params
     params.require(:day).permit(:name)
