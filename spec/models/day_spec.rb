@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Week do
+describe Day do
   it { should validate_presence_of :name }
-  it { should have_many :days }
+  it { should belongs_to :week }
 end

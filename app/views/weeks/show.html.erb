@@ -1,9 +1,26 @@
 <h1><%= @week.name %></h1>
 
-<p><%= link_to "Edit", edit_week_path(@week) %></p>
-<p><%= link_to "Delete", week_path(@week),
-                         :data => {:confirm => "You sure?",
-                                   :method => "delete"} %></p>
+<% if @week.days.any? %>
+  <h4>Here are the days for this week:</h4>
 
+  <ul>
+    <% @week.days.each do |day| %>
+      <li>
+        <%= day.name %> |
+        <%= link_to "Edit", edit_week_day_path(@week, day) %> |
+        <%= link_to "Delete", week_day_path(@week, day),
+                                 :data => {:confirm => "Are you sure?",
+                                                :method => "delete"} %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no days yet!</p>
+<% end %>
+
+<p><%= link_to "Add a day", new_week_day_path(@week) %></p>
+<p><%= link_to "Delete Week", week_path(@week),
+                        :data => {:confirm => "Are you sure?",
+                                       :method => "delete"} %></p>
 
 <p><%= link_to "Return to weeks", weeks_path %></p>
