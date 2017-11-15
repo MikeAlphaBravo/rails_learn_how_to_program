@@ -1,9 +1,18 @@
 class DaysController < ApplicationController
+
+  def index
+    @week = Week.find(params[:week_id])
+    @days = @week.day.all
+  end
+
+  def show
+    @day = Day.find(params[:id])
+  end
+  
   def new
     @week = Week.find(params[:week_id])
     @day = @week.days.new
   end
-
 
   def create
     @week = Week.find(params[:week_id])

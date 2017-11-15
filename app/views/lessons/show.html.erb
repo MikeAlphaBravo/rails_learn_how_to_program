@@ -1,0 +1,8 @@
+<h1><%= @lesson.day.name %></h1>
+<h1><%= @lesson.description %></h1>
+
+<p><%= link_to "Edit Lesson", edit_day_lesson_path(@lesson) %></p>
+<p><%= link_to "Delete", day_lesson_path(@lesson),
+                         :data => {:confirm => "You sure?",
+                                   :method => "delete"} %></p>
+<p><%= link_to "Return to day", day_path(@lesson.day) %></p>

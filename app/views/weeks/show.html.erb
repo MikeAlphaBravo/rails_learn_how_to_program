@@ -6,7 +6,7 @@
   <ul>
     <% @week.days.each do |day| %>
       <li>
-        <%= day.name %> |
+        <%= link_to day.name, day_path(day) %> |
         <%= link_to "Edit", edit_week_day_path(@week, day) %> |
         <%= link_to "Delete", week_day_path(@week, day),
                                  :data => {:confirm => "Are you sure?",

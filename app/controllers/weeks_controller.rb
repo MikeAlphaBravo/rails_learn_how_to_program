@@ -1,17 +1,14 @@
 class WeeksController < ApplicationController
   def index
     @weeks = Week.all
-    render :index
   end
 
   def show
     @week = Week.find(params[:id])
-      render :show
   end
 
   def new
     @week = Week.new
-    render :new
   end
 
   def create
@@ -25,7 +22,6 @@ class WeeksController < ApplicationController
 
   def edit
     @week = Week.find(params[:id])
-    render :edit
   end
 
   def update
@@ -43,6 +39,9 @@ class WeeksController < ApplicationController
     redirect_to weeks_path
   end
 
+  def days
+    @days = Day.includes(:weeks).all
+  end
 
   private
     def week_params

@@ -1,0 +1,26 @@
+<h1><%= @day.name %></h1>
+
+<% if @day.lessons.any? %>
+  <h4>Here are the lessons for this day:</h4>
+
+  <ul>
+    <% @day.lessons.each do |lesson| %>
+      <li>
+        <%= link_to lesson.description, day_lesson_path(@day) %> |
+        <%= link_to "Edit", edit_day_lesson_path(@day, lesson) %> |
+        <%= link_to "Delete", day_lesson_path(@day, lesson),
+                                 :data => {:confirm => "Are you sure?",
+                                                :method => "delete"} %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no lessons yet!</p>
+<% end %>
+
+<p><%= link_to "Add a lesson", new_day_lesson_path(@day) %></p>
+<p><%= link_to "Delete List", day_path(@day),
+                        :data => {:confirm => "Are you sure?",
+                                       :method => "delete"} %></p>
+
+<p><%= link_to "Return to days", days_path %></p>
