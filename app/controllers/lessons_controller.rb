@@ -1,4 +1,9 @@
 class LessonsController < ApplicationController
+
+  def show
+    @lesson = Lesson.find(params[:id])
+  end
+
   def new
     @day = Day.find(params[:day_id])
     @lesson = @day.lessons.new
@@ -12,10 +17,6 @@ class LessonsController < ApplicationController
     else
       render :new
     end
-  end
-
-  def show
-    @lesson = Lesson.find(params[:id])
   end
 
   def edit
@@ -42,6 +43,6 @@ class LessonsController < ApplicationController
 
   private
   def lesson_params
-    params.require(:lesson).permit(:description, :order)
+    params.require(:lesson).permit(:description)
   end
 end
